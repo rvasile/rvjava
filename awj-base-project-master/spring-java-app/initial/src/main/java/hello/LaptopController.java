@@ -21,9 +21,9 @@ public class LaptopController {
     Laptop l2 = new Laptop(2, "Dell Latitude 3042","Intel i5");
     Laptop l3 = new Laptop(3, "Toshiba Satellite 6500","Intel i7");
 
-    laptopuri.add(p1);
-    laptopuri.add(p2);
-    laptopuri.add(p3);
+    laptopuri.add(l1);
+    laptopuri.add(l2);
+    laptopuri.add(l3);
   }
 
   @RequestMapping(value="/laptop", method = RequestMethod.GET)

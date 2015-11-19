@@ -34,7 +34,7 @@ public class LivrareController {
   @RequestMapping(value="/Livrare/{id_livrare}", method = RequestMethod.GET)
   public ResponseEntity show(@PathVariable("id_livrare") int id_livrare) {
     for(Livrare liv : this.livrari) {
-      if(l.getIdLivrare() == id_livrare) {
+      if(liv.getIdLivrare() == id_livrare) {
         return new ResponseEntity<Livrare>(liv, new HttpHeaders(), HttpStatus.OK);
       }
     }
@@ -59,7 +59,7 @@ public class LivrareController {
 
   @RequestMapping(value="/livrare/{id_livrare}", method = RequestMethod.PUT)
   public void putLivrare(@PathVariable("id_livrare") int id_livrare, Livrare liv){
-    l.setIdLivrare(id_livrare);
+    liv.setIdLivrare(id_livrare);
   }
 
 
