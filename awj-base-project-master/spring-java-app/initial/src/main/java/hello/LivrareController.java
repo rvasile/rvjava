@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class LivrareController {
   private List<Livrare> livrari = new ArrayList<Livrare>();
 
-  LaptopController() {
+  LivrareController() {
     Livrare liv1 = new Livrare(8,2200,"John Smith");
     Livrare liv2 = new Livrare(5,4500,"Carla Jager");
     Livrare liv3 = new Livrare(2,399,"Aaron Hunt");
