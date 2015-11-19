@@ -2,9 +2,9 @@ package hello;
 
 public class Livrare {
 
-    private final int id_livrare;
-    private final double pret;
-    private final String nume_client;
+    private int id_livrare;
+    private double pret;
+    private String nume_client;
 
     public Livrare(int id_livrare,double pret, String nume_client) {
         this.id_livrare = id_livrare;

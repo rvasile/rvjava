@@ -2,9 +2,9 @@ package hello;
 
 public class Laptop {
 
-    private final int id_laptop;
-    private final String denumire;
-    private final String procesor;
+    private int id_laptop;
+    private String denumire;
+    private String procesor;
 
 
 

@@ -2,9 +2,9 @@ package hello;
 
 public class Tableta {
 
-    private final int id_tableta;
-    private final String producator;
-    private final String model;
+    private int id_tableta;
+    private String producator;
+    private String model;
 
     public Tableta(int id_tableta, String producator,String model) {
         this.id_tableta = id_tableta;

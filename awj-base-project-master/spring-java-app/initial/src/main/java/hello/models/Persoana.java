@@ -2,9 +2,9 @@ package hello;
 
 public class Persoana {
 
-    private final int id;
-    private final String nume;
-    private final String localitate;
+    private int id;
+    private String nume;
+    private String localitate;
 
     public Persoana(int id, String nume,String localitate) {
         this.id = id;
