@@ -1,5 +1,6 @@
 package hello;
 
+import hello.models.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,7 @@ public class TabletaController {
     tablete.add(t2);
     tablete.add(t3);
   }
+
 
   @RequestMapping(value="/tableta", method = RequestMethod.GET)
   public List<Tableta> index() {
@@ -52,13 +54,25 @@ public class TabletaController {
     return new ResponseEntity<String>(null, new HttpHeaders(), HttpStatus.NOT_FOUND);
   }
 
-  @RequestMapping(value="/tableta", method = RequestMethod.POST)
-  public void addPersoana(Tableta t){
-    tablete.add(t);
+  @RequestMapping(value="/tableta/{id_tableta}/{producator}/{model}", method = RequestMethod.POST)
+  public ResponseEntity addPersoana(@PathVariable ("id_tableta") int id_tableta,
+                                    @PathVariable ("producator") String producator,
+                                    @PathVariable ("model") String model){
+    Tableta t1= new Tableta(id_tableta,producator,model);
+    tablete.add(t1);
+    return new ResponseEntity<Tableta>(t1, new HttpHeaders(), HttpStatus.OK);
   }
 
   @RequestMapping(value="/tableta/{id_tableta}", method = RequestMethod.PUT)
-  public void putTableta(@PathVariable("id_tableta") int id_tableta, Tableta t){
-    t.setIdTableta(id_tableta);
+  public ResponseEntity putTableta(@PathVariable("id_tableta") int id_tableta){
+    for(Tableta t: this.tablete){
+      if(t.getIdTableta()==id_tableta){
+        t.setModel("Asus");
+
+        return new ResponseEntity <Tableta> (t,new HttpHeaders(),HttpStatus.OK);
+      }
+
+    }
+    return new ResponseEntity<String>(null,new HttpHeaders(),HttpStatus.NOT_FOUND);
   }
 }

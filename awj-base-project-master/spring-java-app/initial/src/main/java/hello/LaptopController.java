@@ -1,5 +1,6 @@
 package hello;
 
+import hello.models.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,14 +53,26 @@ public class LaptopController {
     return new ResponseEntity<String>(null, new HttpHeaders(), HttpStatus.NOT_FOUND);
   }
 
-  @RequestMapping(value="/laptop", method = RequestMethod.POST)
-  public void addLaptop(Laptop l){
-    laptopuri.add(l);
+  @RequestMapping(value="/laptop/{id_laptop}/{denumire}/{procesor}", method = RequestMethod.POST)
+  public ResponseEntity addLaptop(@PathVariable ("id_laptop") int id_laptop,
+                                  @PathVariable ("denumire") String denumire,
+                                  @PathVariable ("procesor") String procesor){
+
+    Laptop l1 = new Laptop(id_laptop,denumire,procesor);
+    laptopuri.add(l1);
+    return new ResponseEntity<Laptop>(l1, new HttpHeaders(), HttpStatus.OK);
   }
 
   @RequestMapping(value="/laptop/{id_laptop}", method = RequestMethod.PUT)
-  public void putLaptop(@PathVariable("id_laptop") int id_laptop, Laptop l){
-    l.setIdLaptop(id_laptop);
+  public ResponseEntity putLaptop(@PathVariable("id_laptop") int id_laptop){
+    for(Laptop l: this.laptopuri){
+      if(l.getIdLaptop()==id_laptop){
+        l.setProcesor("Intel i3");
+        return new ResponseEntity<Laptop>(l,new HttpHeaders(),HttpStatus.OK);
+      }
+
+    }
+    return new ResponseEntity<String>(null,new HttpHeaders(),HttpStatus.NOT_FOUND);
   }
 
 }

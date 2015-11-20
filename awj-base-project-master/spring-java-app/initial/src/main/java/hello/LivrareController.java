@@ -1,5 +1,6 @@
 package hello;
 
+import hello.models.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,14 +53,26 @@ public class LivrareController {
     return new ResponseEntity<String>(null, new HttpHeaders(), HttpStatus.NOT_FOUND);
   }
 
-  @RequestMapping(value="/livrare", method = RequestMethod.POST)
-  public void addLivrare(Livrare liv){
-    livrari.add(liv);
+  @RequestMapping(value="/livrare/{id_livrare}/{pret}/{nume_client}", method = RequestMethod.POST)
+  public ResponseEntity addLivrare(@PathVariable ("id_livrare") int id_livrare,
+                                   @PathVariable ("pret") double pret,
+                                   @PathVariable ("nume_client") String nume_client){
+    Livrare liv1= new Livrare (id_livrare,pret,nume_client);
+    livrari.add(liv1);
+    return new ResponseEntity<Livrare>(liv1, new HttpHeaders(), HttpStatus.OK);
   }
 
   @RequestMapping(value="/livrare/{id_livrare}", method = RequestMethod.PUT)
-  public void putLivrare(@PathVariable("id_livrare") int id_livrare, Livrare liv){
-    liv.setIdLivrare(id_livrare);
+  public ResponseEntity putLivrare(@PathVariable("id_livrare") int id_livrare){
+    for(Livrare liv: this.livrari){
+      if(liv.getIdLivrare()==id_livrare){
+        liv.setNumeClient("Andrei");
+
+        return new ResponseEntity <Livrare> (liv,new HttpHeaders(),HttpStatus.OK);
+      }
+
+    }
+      return new ResponseEntity<String>(null,new HttpHeaders(),HttpStatus.NOT_FOUND);
   }
 
 

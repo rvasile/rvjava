@@ -1,8 +1,6 @@
-//am facut modificari aici
-
-
 package hello;
 
+import hello.models.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +27,7 @@ public class PersoanaController {
     persoane.add(p2);
     persoane.add(p3);
   }
+
 
   @RequestMapping(value="/persoana", method = RequestMethod.GET)
   public List<Persoana> index() {
@@ -57,16 +56,26 @@ public class PersoanaController {
   }
 
 
-  @RequestMapping(value="/persoana", method = RequestMethod.POST)
-  public void addPersoana(Persoana p){
-    persoane.add(p);
+  @RequestMapping(value="/persoana/{id}/{nume}/{localitate}", method = RequestMethod.POST)
+  public ResponseEntity addPersoana(@PathVariable ("id") int id,
+                                    @PathVariable ("nume") String nume,
+                                    @PathVariable ("localitate") String localitate){
+
+    Persoana p1=new Persoana (id,nume,localitate);
+    persoane.add(p1);
+    return new ResponseEntity<Persoana>(p1,new HttpHeaders(),HttpStatus.OK);
   }
 
   @RequestMapping(value="/persoana/{id}", method = RequestMethod.PUT)
-  public void putPersoana(@PathVariable("id") int id, Persoana p){
-    p.setId(id);
+  public ResponseEntity putPersoana(@PathVariable("id") int id){
+    for(Persoana p: this.persoane){
+      if(p.getId()==id){
+        p.setLocalitate("Bucuresti");
+
+        return new ResponseEntity <Persoana> (p,new HttpHeaders(),HttpStatus.OK);
+      }
+
+    }
+      return new ResponseEntity<String>(null,new HttpHeaders(),HttpStatus.NOT_FOUND);
   }
-
-
-
 }
