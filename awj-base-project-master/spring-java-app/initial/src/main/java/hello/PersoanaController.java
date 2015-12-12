@@ -23,6 +23,7 @@ public class PersoanaController {
     Persoana p2 = new Persoana(2, "Razvan","Targoviste");
     Persoana p3 = new Persoana(3, "Robert","Slatina");
 
+
     persoane.add(p1);
     persoane.add(p2);
     persoane.add(p3);
