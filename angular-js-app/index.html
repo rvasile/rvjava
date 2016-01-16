@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html ng-app="blog">
+<head>
+    <title>My web application</title>
+    <link rel="stylesheet" media="all" href="css/bootstrap.min.css">
+    <link rel="stylesheet" media="all" href="css/custom.css">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="">AWJ Base Project</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Persoane</a></li>
+                    <li><a href="#">----</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<hr/>
+
+<div class="container">
+    <div>
+        <h1>{{ helloWorld }}</h1>
+
+        <p>Writing this live into the browser...</p>
+    </div>
+</div>
+
+<hr/>
+
+<!-- /resources1 -->
+<div class="container" ng-controller="HomeController">
+
+    <h1>Persoane</h1>
+
+    <h2>Listeaza toate persoanele</h2>
+
+    <table class="table table-bordered">
+        <tr>
+            <th ng-repeat="field in fields">{{field | uppercase}}</th>
+            <th style="width:210px;">OPTIONS</th>
+        </tr>
+        <tr ng-repeat="persoana in persoane" data-id="{{persoana.id}}">
+            <td>{{ persoana.id }}</td>
+            <td>{{ persoana.name }}</td>
+            <td>
+                <a href="">
+            <span class="label label-success">
+              Open
+              <span class="glyphicon glyphicon-folder-open"></span>
+            </span>
+                </a>
+                <a href="">
+                    <button ng-click="setUpdatePerson(persoana)" class="btn btn-info btn-xs">
+                        Edit
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </button>
+
+                </a>
+                <a href="">
+                    <button ng-click="deletePersoana(persoana.id)" class="btn btn-danger btn-xs">
+                        Remove
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </a>
+            </td>
+        </tr>
+    </table>
+
+    <div class="row">
+        <div class="col-md-3">
+            <h2>Editeaza persoana</h2>
+
+            <form action="" method="">
+                <div class="form-group">
+                    <label for="attribute1">ID</label>
+                    <input type="text" class="form-control" id="attribute1" placeholder="ID" ng-model="editPerson.id">
+                </div>
+                <div class="form-group">
+                    <label for="attribute2">NUME</label>
+                    <input type="text" class="form-control" id="attribute2" placeholder="NUME" ng-model="editPerson.name">
+                </div>
+                <button type="submit" class="btn btn-info" ng-click="updatePerson()">Save</button>
+            </form>
+        </div>
+
+
+        <div class="col-md-3 col-md-offset-6">
+            <h2>Adauga o persoana</h2>
+
+            <form action="" method="">
+                <div class="form-group">
+                    <label for="attribute1">ID</label>
+                    <input type="text" class="form-control" id="attribute1" placeholder="ID" ng-model="persoana.id">
+                </div>
+                <div class="form-group">
+                    <label for="attribute2">NUME</label>
+                    <input type="text" class="form-control" id="attribute2" placeholder="NUME" ng-model="persoana.name">
+                </div>
+
+                <button ng-click="addPersoana(persoana)" class="btn btn-success">Add</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<hr/>
+
+<!-- /resources2-->
+<!-- <div class="container">
+   <h1>Resource 2</h1>
+   <h2>List all resources</h2>
+   <table class="table table-bordered">
+     <tr>
+       <th>Attribute 1</th>
+       <th>Attribute 2</th>
+       <th style="width:210px;">Options</th>
+     </tr>
+     <tr>
+       <td>Lorem</td>
+       <td>Sit</td>
+       <td>
+         <a href="">
+           <span class="label label-success">
+             Open
+             <span class="glyphicon glyphicon-folder-open"></span>
+           </span>
+         </a>
+         <a href="">
+           <span class="label label-primary">
+             Edit
+             <span class="glyphicon glyphicon-edit"></span>
+           </span>
+         </a>
+         <a href="">
+           <span class="label label-danger">
+             Remove
+             <span class="glyphicon glyphicon-remove"></span>
+           </span>
+         </a>
+       </td>
+     </tr>
+     <tr>
+       <td>Ipsum</td>
+       <td>Lorem</td>
+       <td>
+         <a href="">
+           <span class="label label-success">
+             Open
+             <span class="glyphicon glyphicon-folder-open"></span>
+           </span>
+         </a>
+         <a href="">
+           <span class="label label-primary">
+             Edit
+             <span class="glyphicon glyphicon-edit"></span>
+           </span>
+         </a>
+         <a href="">
+           <span class="label label-danger">
+             Remove
+             <span class="glyphicon glyphicon-remove"></span>
+           </span>
+         </a>
+       </td>
+     </tr>
+     <tr>
+       <td>Sit</td>
+       <td>Dolor</td>
+       <td>
+         <a href="">
+           <span class="label label-success">
+             Open
+             <span class="glyphicon glyphicon-folder-open"></span>
+           </span>
+         </a>
+         <a href="">
+           <span class="label label-primary">
+             Edit
+             <span class="glyphicon glyphicon-edit"></span>
+           </span>
+         </a>
+         <a href="">
+           <span class="label label-danger">
+             Remove
+             <span class="glyphicon glyphicon-remove"></span>
+           </span>
+         </a>
+       </td>
+     </tr>
+     <tr>
+       <td>Lorem</td>
+       <td>Ipsum</td>
+       <td>
+         <a href="">
+           <span class="label label-success">
+             Open
+             <span class="glyphicon glyphicon-folder-open"></span>
+           </span>
+         </a>
+         <a href="">
+           <span class="label label-primary">
+             Edit
+             <span class="glyphicon glyphicon-edit"></span>
+           </span>
+         </a>
+         <a href="">
+           <span class="label label-danger">
+             Remove
+             <span class="glyphicon glyphicon-remove"></span>
+           </span>
+         </a>
+       </td>
+     </tr>
+   </table>
+
+   <div class="row">
+     <div class="col-md-3">
+       <h2>Edit a resource2</h2>
+       <form action="" method="">
+         <div class="form-group">
+           <label for="attribute1">Attribute 1</label>
+           <input type="text" class="form-control" id="attribute1" placeholder="Attribute 1">
+         </div>
+         <div class="form-group">
+           <label for="attribute2">Attribute 2</label>
+           <input type="text" class="form-control" id="attribute2" placeholder="Attribute 2">
+         </div>
+         <button type="submit" class="btn btn-info">Save</button>
+       </form>
+     </div>
+
+
+     <div class="col-md-3 col-md-offset-6">
+       <h2>Add a resource2</h2>
+       <form action="" method="">
+         <div class="form-group">
+           <label for="attribute1">Attribute 1</label>
+           <input type="text" class="form-control" id="attribute1" placeholder="Attribute 1">
+         </div>
+         <div class="form-group">
+           <label for="attribute2">Attribute 2</label>
+           <input type="text" class="form-control" id="attribute2" placeholder="Attribute 2">
+         </div>
+         <button type="submit" class="btn btn-success">Add</button>
+       </form>
+     </div>
+   </div>
+
+   <div class="row">
+     <div class="col-md-12">
+       <h2>Show a resource2</h2>
+     </div>
+     <div class="col-md-2">
+       <img src="http://lorempixel.com/200/200/technics/?id=2" class="img-thumbnail"/>
+     </div>
+     <div class="col-md-10">
+       <h1>Attribute 1</h1>
+       <p>Attribute 2, Attribute 3</p>
+       <h3>Sub resource</h3>
+       <table class="table table-bordered table-striped">
+         <tr>
+           <th>Attribute 5</th>
+           <th>Attribute 6</th>
+         </tr>
+         <tr>
+           <td>Lorem ipsum</td>
+           <td>Lorem</td>
+         </tr>
+         <tr>
+           <td>Lorem ipsum dolor</td>
+           <td>Sir</td>
+         </tr>
+       </table>
+     </div>
+   </div>
+ </div>  --->
+<hr/>
+
+<div class="container">
+    <footer class="footer">
+        <p class="text-muted pull-left">AWJ Base Project &copy; 2015-2016</p>
+
+        <p class="text-muted pull-right">Oprea Valeriu-Florin 341 A1</p>
+    </footer>
+</div>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
